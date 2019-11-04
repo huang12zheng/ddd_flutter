@@ -2,11 +2,11 @@ import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
 import 'package:tdd_clean_architecture/core/error/exceptions.dart';
 import 'package:tdd_clean_architecture/core/error/failure.dart';
-import 'package:tdd_clean_architecture/core/platform/network_info.dart';
+import 'package:tdd_clean_architecture/core/network/network_info.dart';
 import 'package:tdd_clean_architecture/features/number_trivia/data/datasources/number_trivia_local_data_source.dart';
 import 'package:tdd_clean_architecture/features/number_trivia/data/datasources/number_trivia_remote_data_source.dart';
 import 'package:tdd_clean_architecture/features/number_trivia/domain/entities/number_trivia.dart';
-import 'package:tdd_clean_architecture/features/number_trivia/domain/repository/number_trivia_repository.dart';
+import 'package:tdd_clean_architecture/features/number_trivia/domain/repositories/number_trivia_repository.dart';
 
 typedef Future<NumberTrivia> _ConcreteOrRandomChooser();
 
@@ -46,14 +46,14 @@ class NumberTriviaRepositoryImpl implements NumberTriviaRepository {
         localDataSource.cacheNumberTrivia(remoteTrivia);
         return Right(remoteTrivia);
       } on ServerException {
-        return Left(ServerFailure([]));
+        return Left(ServerFailure());
       }
     } else {
       try {
         final localTrivia = await localDataSource.getLastNumberTrivia();
         return Right(localTrivia);
       } on CacheException {
-        return Left(CacheFailure([]));
+        return Left(CacheFailure());
       }
     }
   }

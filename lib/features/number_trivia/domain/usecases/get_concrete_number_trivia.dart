@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:tdd_clean_architecture/core/error/failure.dart';
 import 'package:tdd_clean_architecture/core/usecases/usecase.dart';
 import 'package:tdd_clean_architecture/features/number_trivia/domain/entities/number_trivia.dart';
-import 'package:tdd_clean_architecture/features/number_trivia/domain/repository/number_trivia_repository.dart';
+import 'package:tdd_clean_architecture/features/number_trivia/domain/repositories/number_trivia_repository.dart';
 
 class GetConcreteNumberTrivia extends UseCase<NumberTrivia, Params> {
   final NumberTriviaRepository repository;
@@ -21,6 +21,5 @@ class Params extends Equatable {
   Params({@required this.number});
 
   @override
-  // TODO: implement props
   List<Object> get props => [number];
 }

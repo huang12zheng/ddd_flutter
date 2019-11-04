@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:tdd_clean_architecture/core/error/exceptions.dart';
 import 'package:tdd_clean_architecture/core/error/failure.dart';
-import 'package:tdd_clean_architecture/core/platform/network_info.dart';
+import 'package:tdd_clean_architecture/core/network/network_info.dart';
 import 'package:tdd_clean_architecture/features/number_trivia/data/datasources/number_trivia_local_data_source.dart';
 import 'package:tdd_clean_architecture/features/number_trivia/data/datasources/number_trivia_remote_data_source.dart';
 import 'package:tdd_clean_architecture/features/number_trivia/data/models/NumberTriviaModel.dart';
@@ -107,7 +107,7 @@ void main() {
           // assert
           verify(mockRemoteDataSource.getConcreteNumberTrivia(tNumber));
           verifyZeroInteractions(mockLocalDataSource);
-          expect(result, equals(Left(ServerFailure([]))));
+          expect(result, equals(Left(ServerFailure())));
         },
       );
     });
@@ -139,7 +139,7 @@ void main() {
           // assert
           verifyZeroInteractions(mockRemoteDataSource);
           verify(mockLocalDataSource.getLastNumberTrivia());
-          expect(result, equals(Left(CacheFailure([]))));
+          expect(result, equals(Left(CacheFailure())));
         },
       );
     });
@@ -202,7 +202,7 @@ void main() {
           // assert
           verify(mockRemoteDataSource.getRandomNumberTrivia());
           verifyZeroInteractions(mockLocalDataSource);
-          expect(result, equals(Left(ServerFailure([]))));
+          expect(result, equals(Left(ServerFailure())));
         },
       );
     });
@@ -234,7 +234,7 @@ void main() {
           // assert
           verifyZeroInteractions(mockRemoteDataSource);
           verify(mockLocalDataSource.getLastNumberTrivia());
-          expect(result, equals(Left(CacheFailure([]))));
+          expect(result, equals(Left(CacheFailure())));
         },
       );
     });

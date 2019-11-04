@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:tdd_clean_architecture/core/usecases/usecase.dart';
 import 'package:tdd_clean_architecture/features/number_trivia/domain/entities/number_trivia.dart';
-import 'package:tdd_clean_architecture/features/number_trivia/domain/repository/number_trivia_repository.dart';
+import 'package:tdd_clean_architecture/features/number_trivia/domain/repositories/number_trivia_repository.dart';
 import 'package:tdd_clean_architecture/features/number_trivia/domain/usecases/get_random_number_trivia.dart';
 
 class MockNumberTriviaRepository extends Mock implements NumberTriviaRepository {}
@@ -14,7 +14,7 @@ void main() {
 
   setUp(() {
     mockNumberTriviaRepository = MockNumberTriviaRepository();
-    usecase = GetRandomNumberTrivia(repository: mockNumberTriviaRepository);
+    usecase = GetRandomNumberTrivia(mockNumberTriviaRepository);
   });
 
   final tNumberTrivia = NumberTrivia(number: 1, text: 'test');
