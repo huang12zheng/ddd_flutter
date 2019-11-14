@@ -14,18 +14,7 @@ class _NumberTriviaScreenState extends State<NumberTriviaScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NumberTriviaBloc, NumberTriviaState>(
-      builder: (context, state) {
-        if (state is Empty) {
-          return MessageDisplay(message: 'Start searching!');
-        } else if (state is Loading) {
-          return LoadingWidget();
-        } else if (state is Loaded) {
-          return TriviaDisplay(numberTrivia: state.trivia);
-        } else if (state is Error) {
-          return MessageDisplay(message: state.message);
-        }
-        return Text('');
-      },
+      builder: (context, state) => state.build()
     );
   }
 }
