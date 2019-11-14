@@ -26,10 +26,10 @@ class GetTriviaForConcreteNumber extends NumberTriviaEvent {
 
       yield* inputEither.fold(
         (failure) async* {
-          yield Error(message: INVALID_INPUT_FAILURE_MESSAGE);
+          yield NumberTriviaState.failure(error: INVALID_INPUT_FAILURE_MESSAGE);
         },
         (integer) async* {
-          yield Loading();
+          yield NumberTriviaState.loading();
           final failureOrTrivia =
               await bloc.getConcreteNumberTrivia(Params(number: integer));
           yield* _eitherLoadedOrErrorState(failureOrTrivia);
@@ -44,7 +44,7 @@ class GetTriviaForRandomNumber extends NumberTriviaEvent {
 
   @override
   loadAsync(NumberTriviaBloc bloc) async *{
-    yield Loading();
+    yield NumberTriviaState.loading();
     final failureOrTrivia = await bloc.getRandomNumberTrivia(NoParams());
     yield* _eitherLoadedOrErrorState(failureOrTrivia);
   }
@@ -55,8 +55,8 @@ Stream<NumberTriviaState> _eitherLoadedOrErrorState(
   Either<Failure, NumberTrivia> failureOrTrivia,
 ) async* {
   yield failureOrTrivia.fold(
-    (failure) => Error(message: _mapFailureToMessage(failure)),
-    (trivia) => Loaded(trivia: trivia),
+    (failure) => NumberTriviaState.failure(error: _mapFailureToMessage(failure)),
+    (trivia) => NumberTriviaState.success(data: trivia),
   );
 }
 

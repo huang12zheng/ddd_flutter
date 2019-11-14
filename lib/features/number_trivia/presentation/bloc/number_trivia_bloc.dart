@@ -27,7 +27,7 @@ class NumberTriviaBloc extends HydratedBloc<NumberTriviaEvent, NumberTriviaState
         getRandomNumberTrivia = random;
 
   @override
-  NumberTriviaState get initialState => Empty();
+  NumberTriviaState get initialState => NumberTriviaState.initial();
 
   @override
   Stream<NumberTriviaState> mapEventToState(
