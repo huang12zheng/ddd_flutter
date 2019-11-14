@@ -18,7 +18,7 @@ class _NumberTriviaScreenState extends State<NumberTriviaScreen> {
     // return BlocBuilder<NumberTriviaBloc, NumberTriviaState>(
     //   builder: (context, state) => state.build()
     // );
-    SealedBlocBuilder4<NumberTriviaBloc, NumberTriviaState, Empty, Loading, Loaded,
+    return SealedBlocBuilder4<NumberTriviaBloc, NumberTriviaState, Empty, Loading, Loaded,
             Error>(
           builder: (context, states) => states(
             (initial) => initial.build(),
