@@ -8,7 +8,7 @@ import 'package:tdd_clean_architecture/features/number_trivia/presentation/bloc/
 import './bloc.dart';
 abstract class NumberTriviaEvent extends Equatable {
   const NumberTriviaEvent();
-  loadAsync(NumberTriviaBloc bloc);
+  Stream<NumberTriviaState> loadAsync(NumberTriviaBloc bloc);
 }
 
 class GetTriviaForConcreteNumber extends NumberTriviaEvent {
