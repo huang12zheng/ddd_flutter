@@ -7,7 +7,7 @@ import '../../domain/entities/number_trivia.dart';
 
 abstract class NumberTriviaState extends Equatable {
   const NumberTriviaState();
-
+  /// it is need to refactor
   Widget build();
 }
 
